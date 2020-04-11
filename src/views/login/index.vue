@@ -36,7 +36,19 @@ export default {
         check: false // 复选框
       },
       loginrules: {
-
+        phono: [{ required: true, message: '请输入您的手机号' },
+          { pattern: /^1[3456789]\d{9}$/, message: '请输入合法的手机号' }],
+        niu: [{ required: true, message: '请输入您的验证码' },
+          { pattern: /^\d{6}$/, message: '验证码为6位数字' }],
+        check: [{
+          validator: function (rule, value, callback) {
+            if (value) {
+              callback()
+            } else {
+              callback(new Error('no'))
+            }
+          }
+        }]
       }
     }
   }
