@@ -5,7 +5,7 @@
           <img src="../../assets/img/keai.gif" alt="" class="photo">
         </div>
         <!-- 表单 -->
-        <el-form :model="loginfrom" :rules="loginrules">
+        <el-form ref="myForm" :model="loginfrom" :rules="loginrules">
           <el-form-item prop="phono">
               <el-input v-model="loginfrom.phono" placeholder="手机号"></el-input>
           </el-form-item>
@@ -17,7 +17,7 @@
               <el-checkbox v-model="loginfrom.check">必须同意我们欺负你才带你玩</el-checkbox>
           </el-form-item>
           <el-form-item style="margin-top:-15px">
-              <el-button type="danger" style="width:100%">主要按钮</el-button>
+              <el-button @click="login" type="danger" style="width:100%">登录</el-button>
           </el-form-item>
         </el-form>
 
@@ -50,6 +50,15 @@ export default {
           }
         }]
       }
+    }
+  },
+  methods: {
+    login () {
+      this.$ref.myForm.validator(function (isok) {
+        if (isok) {
+          console.log('ok')
+        }
+      })
     }
   }
 }
